@@ -33,5 +33,6 @@ return [
         'https://sh.api.weixin.qq.com',
         'https://sz.api.weixin.qq.com',
     ],
+    'timeout'=>2,
 
 ];

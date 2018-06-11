@@ -23,4 +23,9 @@ class WechatTest extends TestCase
         $status = Wechat::get();
         $this->assertEquals("wechat worked",$status);
     }
+
+    public function testController(){
+        $response = $this->json('POST','/wechat/callback.php');
+        $response->assertStatus(200)->assertJson(['result'=>true]);
+    }
 }

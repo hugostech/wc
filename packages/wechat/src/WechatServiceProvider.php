@@ -13,10 +13,11 @@ class WechatServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'views','wechat');
+        $this->loadRoutesFrom(__DIR__.'/route/route.php');
+        $this->loadViewsFrom(__DIR__.'/views','wechat');
         $this->publishes([
-            __DIR__.'views' => resource_path('views/vendor/wechat'),
-            __DIR__.'config/wechat.php' => config_path('wechat.php'),
+            __DIR__.'/views' => resource_path('views/vendor/wechat'),
+            __DIR__.'/config/wechat.php' => config_path('wechat.php'),
         ]);
     }
 
@@ -27,6 +28,7 @@ class WechatServiceProvider extends ServiceProvider
      */
     public function register()
     {
+//        $this->app->make('Hugostech\Wechat\Controller\WechatController');
     }
 
     public $singletons = [
