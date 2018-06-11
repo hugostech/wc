@@ -6,13 +6,13 @@
  * Time: 11:38 AM
  */
 
-namespace hugostech\laravel_wechat;
+namespace Hugostech\Wechat;
 
 
-use hugostech\laravel_wechat\module\WechatAuth;
-use hugostech\laravel_wechat\module\WechatHandler;
-use hugostech\laravel_wechat\module\WechatMessage;
-use hugostech\laravel_wechat\module\WechatPayment;
+use Hugostech\Wechat\module\WechatAuth;
+use Hugostech\Wechat\module\WechatHandler;
+use Hugostech\Wechat\module\WechatMessage;
+use Hugostech\Wechat\module\WechatPayment;
 
 class Wechat
 {
@@ -23,5 +23,9 @@ class Wechat
         $this->handler = $handler;
         $this->payment = $payment;
         $this->message = $message;
+    }
+
+    public function get(){
+        return 'wechat worked';
     }
 }

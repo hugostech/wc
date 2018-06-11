@@ -6,7 +6,7 @@
  * Time: 11:48 AM
  */
 
-namespace hugostech\laravel_wechat\module;
+namespace Hugostech\Wechat\module;
 
 
 use GuzzleHttp\Client;

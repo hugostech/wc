@@ -6,7 +6,7 @@
  * Time: 11:45 AM
  */
 
-namespace hugostech\laravel_wechat\module;
+namespace Hugostech\Wechat\module;
 
 
 class WechatAuth extends Module
