@@ -1,0 +1,24 @@
+{
+    "name": "hugostech/laravel_wechat",
+    "description": "This parkage is design for wechat in laravel",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hugo",
+            "email": "hugowangchn@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "hugostech\\laravel_wechat\\WechatServiceProvider"
+            ],
+            "aliases": {
+                "Wechat": "hugostech\\laravel_wechat\\Facade"
+            }
+        }
+    }
+}
