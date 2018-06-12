@@ -9,9 +9,14 @@
 namespace Hugostech\Wechat\module;
 
 
+use Carbon\Carbon;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Psr7;
 
 class Module
 {
@@ -24,6 +29,12 @@ class Module
     }
 
     public function getAccessToken(){
+        return Cache::remember('wc_access_token',Carbon::now()->addSeconds(7000),function (){
+            $this->getAccessTokenFromWC();
+        });
+    }
+
+    public function getAccessTokenFromWC(){
         $url = Config::get('wechat.api_urls',['https://api.weixin.qq.com'])[$this->api_url];
         $query = [
             'grant_type'=>'client_credential',
@@ -33,8 +44,30 @@ class Module
         $res = $this->httpClient->request('GET',$url,compact('query'));
     }
 
-//    public function get(){
-//        $request = new Request()
-//    }
+    private function makeRequest($url,$method='GET',$options=[]){
+        try{
+            $request = new Request($method, $url);
+            return $this->httpClient->send($request,$options);
+        }catch (RequestException $e){
+            if (Config::get('wechat.mode')==='dev'){
+                Log::error(Psr7\str($e->getResponse()));
+            }
+            if ($this->selectServer()){
+                $this->{__FUNCTION__}();
+            }
+        }
+
+
+    }
+
+    private function selectServer(){
+        $server = $this->api_url + 1;
+        if ($server >= count(Config::get('wechat.api_urls'))){
+            $server = 0;
+        }
+        $this->api_url = $server;
+        return true;
+    }
+
 
 }
