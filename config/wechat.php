@@ -27,6 +27,7 @@ return [
     'prefix' => 'wechat',
     'appid' => env('WC_APPID',''),
     'secret' => env('WC_SECRET',''),
+    'token'=>env('WC_TOKEN',''),
     'api_urls' => [
         'https://api.weixin.qq.com',
         'https://hk.api.weixin.qq.com',
@@ -34,5 +35,6 @@ return [
         'https://sz.api.weixin.qq.com',
     ],
     'timeout'=>2,
+
 
 ];
