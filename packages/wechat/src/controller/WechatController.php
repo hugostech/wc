@@ -10,4 +10,8 @@ class WechatController extends Controller
     public function entry(Request $request){
         return json_encode(['result'=>true]);
     }
+
+    public function run(){
+
+    }
 }

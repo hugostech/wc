@@ -7,8 +7,6 @@
  */
 
 namespace Hugostech\Wechat;
-
-
 use Hugostech\Wechat\module\WechatAuth;
 use Hugostech\Wechat\module\WechatHandler;
 use Hugostech\Wechat\module\WechatMessage;

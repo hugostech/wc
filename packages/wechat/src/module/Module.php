@@ -33,8 +33,8 @@ class Module
         $res = $this->httpClient->request('GET',$url,compact('query'));
     }
 
-    public function get(){
-        $request = new Request()
-    }
+//    public function get(){
+//        $request = new Request()
+//    }
 
 }
