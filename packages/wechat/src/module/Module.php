@@ -34,9 +34,10 @@ class Module
 
     public function getAccessToken()
     {
-        return Cache::remember('wc_access_token', 100, function () {
-            $this->getAccessTokenFromWC();
-        });
+        if (!Cache::has('wc_access_token')){
+            Cache::put('wc_access_token', $this->getAccessTokenFromWC(), 100);
+        }
+        return Cache::get('wc_access_token');
     }
 
     public function refreshAccessToken()
