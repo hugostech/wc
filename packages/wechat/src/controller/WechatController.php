@@ -2,6 +2,7 @@
 
 namespace Hugostech\Wechat\Controller;
 
+use Hugostech\Wechat\Facade\Wechat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +12,7 @@ class WechatController extends Controller
         return json_encode(['result'=>true]);
     }
 
-    public function run(){
-
+    public function verify(Request $request){
+        return Wechat::activeAccount($request);
     }
 }

@@ -26,4 +26,8 @@ class Wechat
     public function get(){
         return 'wechat worked';
     }
+
+    public function activeAccount($request){
+        return $this->handler->activeAccount($request);
+    }
 }

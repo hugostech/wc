@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use Hugostech\Wechat\Facade\Wechat;
+use Hugostech\Wechat\helper\Signature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class WechatTest extends TestCase
 {
+    use Signature;
     /**
      * A basic test example.
      *
@@ -26,6 +28,15 @@ class WechatTest extends TestCase
 
     public function testController(){
         $response = $this->json('POST','/wechat/callback.php');
-        $response->assertStatus(200)->assertJson(['result'=>true]);
+        $response->assertStatus(200);
+    }
+
+    public function testActiveAccount(){
+        $timestamp  = time();
+        $nonce = uniqid('test');
+        $echostr = 'testSignature';
+        $signature = $this->sign(compact('timestamp','nonce'));
+        $response = $this->call('GET','/wechat/callback.php',compact('timestamp','nonce','echostr','signature'));
+        $response->assertStatus(200)->assertSee($echostr);
     }
 }

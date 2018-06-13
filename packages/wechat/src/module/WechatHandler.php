@@ -9,7 +9,17 @@
 namespace Hugostech\Wechat\module;
 
 
+use Illuminate\Support\Facades\Request;
+
 class WechatHandler extends Module
 {
-
+    public function activeAccount($request){
+        if ($request->has(['signature','timestamp','nonce','echostr'])){
+            $data = [$request->timestamp,$request->nonce];
+            if($this->verify($data,$request->signature)){
+                return $request->echostr;
+            }
+        }
+        return '';
+    }
 }

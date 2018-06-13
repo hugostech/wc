@@ -8,5 +8,5 @@
 
 Route::prefix(config('wechat.prefix'))->group(function (){
     Route::post('/callback.php','Hugostech\Wechat\Controller\WechatController@entry');
-    Route::get('/callback.php','Hugostech\Wechat\Controller\WechatController@run');
+    Route::get('/callback.php','Hugostech\Wechat\Controller\WechatController@verify');
 });

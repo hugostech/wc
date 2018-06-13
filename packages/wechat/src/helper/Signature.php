@@ -11,11 +11,13 @@ namespace Hugostech\Wechat\helper;
 
 trait Signature
 {
-    public function sign(){
-
+    public function sign($data){
+        $data[] = config('wechat.token');
+        sort($data,SORT_STRING);
+        return sha1(implode($data));
     }
 
-    public function verify($signature){
-
+    public function verify($data, $signature){
+        return $this->sign($data) === $signature;
     }
 }

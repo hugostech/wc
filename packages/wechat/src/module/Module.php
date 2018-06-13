@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Hugostech\Wechat\helper\Signature;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Log;
@@ -20,6 +21,7 @@ use GuzzleHttp\Psr7;
 
 class Module
 {
+    use Signature;
     protected $httpClient;
     protected $api_url;
     public function __construct(Client $client)
