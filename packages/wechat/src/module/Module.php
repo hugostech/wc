@@ -11,6 +11,7 @@ namespace Hugostech\Wechat\module;
 
 use Carbon\Carbon;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Hugostech\Wechat\helper\Signature;
@@ -31,37 +32,48 @@ class Module
     }
 
     public function getAccessToken(){
+//        return Config::get('wechat.api_urls')[$this->api_url];
+
         return Cache::remember('wc_access_token',Carbon::now()->addSeconds(7000),function (){
             $this->getAccessTokenFromWC();
         });
     }
 
     public function getAccessTokenFromWC(){
+
         $query = [
             'grant_type'=>'client_credential',
             'appid'=>Config::get('wechat.appid',''),
             'secret'=>Config::get('wechat.secret','')
         ];
-        $res = $this->makeRequest('/','GET',compact('query'));
-        return $res['access_token'];
+        $res = $this->makeRequest('/cgi-bin/token','GET',compact('query'));
+        return $res;
     }
 
     private function makeRequest($url,$method='GET',$options=[]){
         try{
-            $url = Config::get('wechat.api_urls',['https://api.weixin.qq.com'])[$this->api_url].$url;
-            $request = new Request($method, $url);
+            $realurl = Config::get('wechat.api_urls')[$this->api_url].$url;
+            $request = new Request($method, $realurl);
+
             $res = $this->httpClient->send($request,$options);
             $result = json_decode($res->getBody(),true);
             if (isset($result['errcode'])){
                 $this->logError(print_r($result,true));
             }else{
-                return $result;
+                return $result['access_token'];
             }
         }catch (RequestException $e){
-            $this->logError(Psr7\str($e->getResponse()));
+            $this->logError('re');
+            $this->logError(Psr7\str($e->getRequest()));
+            if ($e->hasResponse()){
+                $this->logError(Psr7\str($e->getResponse()));
+            }
             if ($this->selectServer()){
                 $this->{__FUNCTION__}($url,$method,$options);
             }
+        }catch (ClientException $e){
+            $this->logError(Psr7\str($e->getRequest()));
+            $this->logError(Psr7\str($e->getResponse()));
         }
 
     }

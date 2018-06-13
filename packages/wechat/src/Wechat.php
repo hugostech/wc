@@ -31,5 +31,9 @@ class Wechat
         return $this->handler->activeAccount($request);
     }
 
+    public function getAccessToken(){
+        return $this->handler->getAccessToken();
+    }
+
 
 }

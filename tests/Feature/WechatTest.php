@@ -27,7 +27,7 @@ class WechatTest extends TestCase
     }
 
     public function testController(){
-        $response = $this->json('POST','/wechat/callback.php');
+        $response = $this->json('POST','/wechat/cb');
         $response->assertStatus(200);
     }
 
@@ -36,11 +36,12 @@ class WechatTest extends TestCase
         $nonce = uniqid('test');
         $echostr = 'testSignature';
         $signature = $this->sign(compact('timestamp','nonce'));
-        $response = $this->call('GET','/wechat/callback.php',compact('timestamp','nonce','echostr','signature'));
+        $response = $this->call('GET','/wechat/cb',compact('timestamp','nonce','echostr','signature'));
         $response->assertStatus(200)->assertSee($echostr);
     }
 
     public function testGetAccessToken(){
-//        Wechat::
+        $token = Wechat::getAccessToken();
+        $this->assertEquals(cache('wc_access_token'), $token);
     }
 }
