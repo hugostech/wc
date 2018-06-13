@@ -9,4 +9,5 @@
 Route::prefix(config('wechat.prefix'))->group(function (){
     Route::post('/cb','Hugostech\Wechat\Controller\WechatController@entry');
     Route::get('/cb','Hugostech\Wechat\Controller\WechatController@verify');
+
 });

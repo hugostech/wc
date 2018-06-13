@@ -39,4 +39,8 @@ class WechatTest extends TestCase
         $response = $this->call('GET','/wechat/callback.php',compact('timestamp','nonce','echostr','signature'));
         $response->assertStatus(200)->assertSee($echostr);
     }
+
+    public function testGetAccessToken(){
+//        Wechat::
+    }
 }

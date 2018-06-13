@@ -37,28 +37,32 @@ class Module
     }
 
     public function getAccessTokenFromWC(){
-        $url = Config::get('wechat.api_urls',['https://api.weixin.qq.com'])[$this->api_url];
         $query = [
             'grant_type'=>'client_credential',
             'appid'=>Config::get('wechat.appid',''),
             'secret'=>Config::get('wechat.secret','')
         ];
-        $res = $this->httpClient->request('GET',$url,compact('query'));
+        $res = $this->makeRequest('/','GET',compact('query'));
+        return $res['access_token'];
     }
 
     private function makeRequest($url,$method='GET',$options=[]){
         try{
+            $url = Config::get('wechat.api_urls',['https://api.weixin.qq.com'])[$this->api_url].$url;
             $request = new Request($method, $url);
-            return $this->httpClient->send($request,$options);
-        }catch (RequestException $e){
-            if (Config::get('wechat.mode')==='dev'){
-                Log::error(Psr7\str($e->getResponse()));
+            $res = $this->httpClient->send($request,$options);
+            $result = json_decode($res->getBody(),true);
+            if (isset($result['errcode'])){
+                $this->logError(print_r($result,true));
+            }else{
+                return $result;
             }
+        }catch (RequestException $e){
+            $this->logError(Psr7\str($e->getResponse()));
             if ($this->selectServer()){
-                $this->{__FUNCTION__}();
+                $this->{__FUNCTION__}($url,$method,$options);
             }
         }
-
 
     }
 
@@ -69,6 +73,12 @@ class Module
         }
         $this->api_url = $server;
         return true;
+    }
+
+    private function logError($e){
+        if (Config::get('wechat.mode')==='dev'){
+            Log::error($e);
+        }
     }
 
 
