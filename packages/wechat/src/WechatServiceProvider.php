@@ -6,6 +6,11 @@ use Illuminate\Support\ServiceProvider;
 
 class WechatServiceProvider extends ServiceProvider
 {
+    protected $listen = [
+        'Hugostech\Wechat\Events\TemplateMessageEvent' => [
+            'Hugostech\Wechat\Listeners\TemplateMessageListener',
+        ],
+    ];
     /**
      * Bootstrap services.
      *
@@ -18,6 +23,7 @@ class WechatServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/views' => resource_path('views/vendor/wechat'),
             __DIR__.'/config/wechat.php' => config_path('wechat.php'),
+            __DIR__.'/templates' => storage_path('app/wechat_templates'),
         ]);
     }
 

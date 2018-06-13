@@ -9,7 +9,17 @@
 namespace Hugostech\Wechat\module;
 
 
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+
 class WechatMessage extends Module
 {
+    public function sendTemplateMessage($json){
+        $result = $this->makeRequest('/cgi-bin/message/template/send','POST',compact('json'),true);
+        if ($result['errcode']==0){
+            Cache::put($result['msgid'],compact('url','json'),10);
+        }
+        return true;
 
+    }
 }

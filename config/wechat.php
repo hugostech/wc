@@ -35,6 +35,9 @@ return [
         'https://sz.api.weixin.qq.com',
     ],
     'timeout'=>2,
+    'template_messages' => [
+        't1' => 'uMn-d1lws1TsjcnPbxJP1qRhBvHxJxxd_Xri_mQmzSU', //消息模版
+    ],
 
 
 ];

@@ -35,5 +35,11 @@ class Wechat
         return $this->handler->getAccessToken();
     }
 
+    public function sendTemplateMessage($tn, $data){
+        $file = file_get_contents(storage_path('app/wechat_templates/'.config('wechat.template_messages')[$tn]));
+        $json = printf($file, ...$data);
+        $this->message->sendTemplateMessage($json);
+    }
+
 
 }
