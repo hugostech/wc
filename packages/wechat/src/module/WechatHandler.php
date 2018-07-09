@@ -22,4 +22,15 @@ class WechatHandler extends Module
         }
         return '';
     }
+
+    public function long2short($long_url){
+        $url = '/cgi-bin/shorturl';
+        $json = [
+            "action"=>"long2short",
+            "long_url"=>$long_url
+        ];
+        $result = $this->makeRequest($url,'POST',compact('json'),true);
+        return $result['short_url'];
+
+    }
 }
