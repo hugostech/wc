@@ -12,3 +12,6 @@ Route::prefix(config('wechat.prefix'))->group(function (){
     Route::get('/accessToken','Hugostech\Wechat\Controller\WechatController@verify');
 
 });
+Route::prefix(config('wechat.prefix').'/console')->group(function (){
+    Route::get('/','Hugostech\Wechat\Controller\WechatManagementController@index');
+});

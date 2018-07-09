@@ -1,0 +1,1 @@
+test template console show
