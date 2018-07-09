@@ -41,6 +41,10 @@ class Wechat
         $this->message->sendTemplateMessage($json);
     }
 
+    public function handler($method, ...$args){
+        return $this->handler->{$method}(...$args);
+    }
+
 
 
 
