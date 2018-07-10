@@ -17,7 +17,6 @@ class WechatController extends Controller
     }
 
     public function jump(Request $request, $hash){
-        dd($request->all());
-        return Wechat::linkHandler($request, $hash);
+        return Wechat::auth()->scope_code_handler($request, $hash);
     }
 }

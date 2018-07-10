@@ -46,9 +46,6 @@ class Wechat
         return $this->handler->{$method}(...$args);
     }
 
-    public function linkHandler(Request $request, $hash){
-        $this->auth->scope_code_handler($request, $hash);
-    }
 
     public function auth(){
         return $this->auth;
