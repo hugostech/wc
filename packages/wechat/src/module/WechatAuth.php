@@ -30,7 +30,7 @@ class WechatAuth extends Module
             'scope' => $scope,
             'state' => $state,
         ];
-        $url = new Uri(config('wechat.open_url')).'/connect/oauth2/authorize';
+        $url = new Uri(config('wechat.open_url').'/connect/oauth2/authorize');
         $url = $url->withQuery(build_query($query));
         $url = $url->withFragment('wechat_redirect');
         return (string)$url;
