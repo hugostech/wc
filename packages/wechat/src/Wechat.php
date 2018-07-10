@@ -11,6 +11,7 @@ use Hugostech\Wechat\module\WechatAuth;
 use Hugostech\Wechat\module\WechatHandler;
 use Hugostech\Wechat\module\WechatMessage;
 use Hugostech\Wechat\module\WechatPayment;
+use Illuminate\Http\Request;
 
 class Wechat
 {
@@ -43,6 +44,14 @@ class Wechat
 
     public function handler($method, ...$args){
         return $this->handler->{$method}(...$args);
+    }
+
+    public function linkHandler(Request $request, $hash){
+        $this->auth->scope_code_handler($request, $hash);
+    }
+
+    public function auth(){
+        return $this->auth;
     }
 
 

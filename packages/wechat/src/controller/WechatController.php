@@ -15,4 +15,8 @@ class WechatController extends Controller
     public function verify(Request $request){
         return Wechat::activeAccount($request);
     }
+
+    public function jump(Request $request, $hash){
+        return Wechat::linkHandler($request, $hash);
+    }
 }

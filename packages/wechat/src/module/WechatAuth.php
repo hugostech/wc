@@ -22,6 +22,7 @@ class WechatAuth extends Module
      * @param string (option) $state mix length:128
      */
     public function scope_url($redirect_uri, $scope="snsapi_base", $state){
+
         $query = [
             'appid' => config('wechat.appid'),
             'redirect_uri' => $redirect_uri,
@@ -35,10 +36,11 @@ class WechatAuth extends Module
         return (string)$url;
     }
 
-    public function scope_code_handler(Request $request){
+    public function scope_code_handler(Request $request, $hash){
         if($request->has(['code', 'state'])){
-            $hash = $request->input('state');
+            $state = $request->input('state');
             $code = $request->input('code');
+
             $row = DB::table('wechat_mapped_links')->where('hash',$hash)->first();
             if (!empty($row)){
                 return $this->dstHandler($row->dst);
@@ -48,6 +50,17 @@ class WechatAuth extends Module
         }else{
             throw new \Exception('Missing necessary params');
         }
+    }
+
+    public function getScopeAccessToken($code){
+        $url = '/sns/oauth2/access_token';
+        $query = [
+            'appid' => config('wechat.appid'),
+            'secret' => config('wechat.secret'),
+            'code' => $code,
+            'grant_type' => 'authorization_code'
+        ];
+        return $this->makeRequest($url,'GET', compact('query'));
     }
 
     private function dstHandler($dst){

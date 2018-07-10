@@ -18,6 +18,7 @@ class CreateWechatLinksTable extends Migration
             $table->timestamps();
             $table->string('hash');
             $table->text('dst');
+            $table->text('note')->nullable();
         });
     }
 

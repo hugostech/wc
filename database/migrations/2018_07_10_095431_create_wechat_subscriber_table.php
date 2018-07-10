@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWechatLinksTable extends Migration
+class CreateWechatSubscriberTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateWechatLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('wechat_mapped_links', function (Blueprint $table) {
+        Schema::create('wechat_subscriber', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('hash');
-            $table->text('dst');
-            $table->text('note')->nullable();
+            $table->string('openid')->unique();
+            $table->string('user_name')->nullable();
+            $table->integer('status')->default(0);
+            $table->text('scope_info')->nullable();
         });
     }
 
@@ -29,6 +30,6 @@ class CreateWechatLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wechat_mapped_links');
+        Schema::dropIfExists('wechat_subscriber');
     }
 }

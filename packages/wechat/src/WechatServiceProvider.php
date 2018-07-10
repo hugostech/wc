@@ -10,6 +10,9 @@ class WechatServiceProvider extends ServiceProvider
         'Hugostech\Wechat\Events\TemplateMessageEvent' => [
             'Hugostech\Wechat\Listeners\TemplateMessageListener',
         ],
+        'Hugostech\Wechat\Events\ScopeEvent' => [
+            'App\Listeners\ScopeEventListener',
+        ],
     ];
     /**
      * Bootstrap services.
