@@ -12,6 +12,7 @@ namespace Hugostech\Wechat\module;
 use function GuzzleHttp\Psr7\build_query;
 use GuzzleHttp\Psr7\Uri;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WechatAuth extends Module
 {
@@ -36,9 +37,24 @@ class WechatAuth extends Module
 
     public function scope_code_handler(Request $request){
         if($request->has(['code', 'state'])){
-
+            $hash = $request->input('state');
+            $code = $request->input('code');
+            $row = DB::table('wechat_mapped_links')->where('hash',$hash)->first();
+            if (!empty($row)){
+                return $this->dstHandler($row->dst);
+            }else{
+                return null;
+            }
         }else{
             throw new \Exception('Missing necessary params');
+        }
+    }
+
+    private function dstHandler($dst){
+        if (method_exists($this,$dst)){
+            return $this->{$dst}();
+        }else{
+            return redirect($dst);
         }
     }
 }
