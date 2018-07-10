@@ -37,6 +37,7 @@ class WechatAuth extends Module
     }
 
     public function scope_code_handler(Request $request, $hash){
+        dd($request->all());
         if($request->has(['code', 'state'])){
             $state = $request->input('state');
             $code = $request->input('code');
