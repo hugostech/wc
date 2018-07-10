@@ -33,4 +33,6 @@ class WechatHandler extends Module
         return $result['short_url'];
 
     }
+
+
 }

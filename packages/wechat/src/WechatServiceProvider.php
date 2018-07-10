@@ -20,6 +20,7 @@ class WechatServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/route/route.php');
         $this->loadViewsFrom(__DIR__.'/views','wechat');
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->publishes([
             __DIR__.'/views' => resource_path('views/vendor/wechat'),
             __DIR__.'/config/wechat.php' => config_path('wechat.php'),

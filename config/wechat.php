@@ -38,6 +38,7 @@ return [
     'template_messages' => [
         't1' => 'uMn-d1lws1TsjcnPbxJP1qRhBvHxJxxd_Xri_mQmzSU', //消息模版
     ],
+    'open_url' => 'https://open.weixin.qq.com',
 
 
 ];

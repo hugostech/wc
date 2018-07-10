@@ -63,7 +63,11 @@ class Module
             if ($needToken) {
                 $options['query'] = ['access_token'=>$this->getAccessToken()];
             }
-            $realurl = Config::get('wechat.api_urls')[$this->api_url] . $url;
+            if (!starts_with(strtolower($url), 'http')){
+                $realurl = Config::get('wechat.api_urls')[$this->api_url] . $url;
+            }else{
+                $realurl = $url;
+            }
             $request = new Request($method, $realurl);
             $res = $this->httpClient->send($request, $options);
             $result = json_decode($res->getBody(), true);
