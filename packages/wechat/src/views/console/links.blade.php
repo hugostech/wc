@@ -21,7 +21,10 @@
                         <label>State</label>
                         {!! Form::text('state',null,['class'=>'form-control','required']) !!}
                     </div>
+
                     <div class="form-group col-sm-6">
+                        <label>Dirctly ShortUrl</label>
+                        {!! Form::checkbox('shorturl','enable',false) !!}
                         {!! Form::submit('Transfer',['class'=>'btn btn-primary']) !!}
                     </div>
 
