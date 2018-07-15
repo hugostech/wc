@@ -38,7 +38,20 @@ class WechatManagementController extends Controller
 
         return Wechat::handler('long2short',$url);
     }
-    public function users(){
-        return view('wechat::console.index');
+    public function subscribers(){
+        return view('wechat::console.subscribers');
+    }
+
+    public function syncSubscriber(Request $request){
+        dd(Wechat::getAccessToken());
+
+        $openids = [];
+        //to do fetch all openid
+        if ($request->has('sync_subscriber')){
+            $openids = Wechat::handler('getSubscriberList');
+        }
+        return $openids;
+
+        //to do sync subscriber openid
     }
 }

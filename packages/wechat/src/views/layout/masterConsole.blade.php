@@ -22,8 +22,8 @@
                 <a href="{{route(config('wechat.prefix').'.console_links')}}" class="list-group-item">
                     Links
                 </a>
-                <a href="#" class="list-group-item">
-                    Users
+                <a href="{{route(config('wechat.prefix').'.console_subscribers')}}" class="list-group-item">
+                    Subscribers
                 </a>
             </ol>
         </div>

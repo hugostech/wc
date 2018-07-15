@@ -2,12 +2,11 @@
 
 namespace Hugostech\Wechat\Listeners;
 
-use Hugostech\Wechat\Events\TemplateMessageEvent;
-use Hugostech\Wechat\Facade\Wechat;
+use App\Events\WcSubscriberInfoEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TemplateMessageListener implements ShouldQueue
+class WcSubscriberInfoEventListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -22,11 +21,11 @@ class TemplateMessageListener implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  TemplateMessageEvent  $event
+     * @param  WcSubscriberInfoEvent  $event
      * @return void
      */
-    public function handle(TemplateMessageEvent $event)
+    public function handle(WcSubscriberInfoEvent $event)
     {
-        Wechat::sendTemplateMessage($event->url, $event->json);
+        //
     }
 }

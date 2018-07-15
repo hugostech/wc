@@ -17,8 +17,11 @@ class CreateWechatSubscriberTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('openid')->unique();
-            $table->string('user_name')->nullable();
+            $table->string('nickname')->nullable();
             $table->integer('status')->default(0);
+            $table->string('remark')->nullable();
+            $table->integer('type')->default(0);
+            $table->text('headimgeurl')->nullable();
             $table->text('scope_info')->nullable();
         });
     }
