@@ -39,8 +39,8 @@ class WechatHandler extends Module
         $query = compact('next_openid');
         $result = $this->makeRequest($url, 'GET', compact('query'), true);
         return $result;
-        if (empty($result['next_openid'])){
-            return $result['data']['openid'];
+        if (empty($result['data']['openid'])){
+            return [];
         }else{
             return array_merge($result['data']['openid'],$this->getSubscriberList($result['next_openid']));
         }
