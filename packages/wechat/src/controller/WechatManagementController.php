@@ -43,7 +43,6 @@ class WechatManagementController extends Controller
     }
 
     public function syncSubscriber(Request $request){
-        dd(Wechat::getAccessToken());
 
         $openids = [];
         //to do fetch all openid
