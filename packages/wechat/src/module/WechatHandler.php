@@ -38,6 +38,9 @@ class WechatHandler extends Module
         $url = '/cgi-bin/user/get';
         $query = compact('next_openid');
         $result = $this->makeRequest($url, 'GET', compact('query'), true);
+        if ($next_openid!=''){
+            dd($result);
+        }
         if (empty($result['data']['openid'])){
             return [];
         }else{
