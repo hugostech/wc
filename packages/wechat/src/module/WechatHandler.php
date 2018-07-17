@@ -9,6 +9,7 @@
 namespace Hugostech\Wechat\module;
 
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 
 class WechatHandler extends Module
@@ -49,7 +50,9 @@ class WechatHandler extends Module
         $lang= 'zh_CN';
         $url = '/cgi-bin/user/info';
         $query = compact('openid','lang');
-        return $this->makeRequest($url, 'GET', compact('query'), true);
+        $result = $this->makeRequest($url, 'GET', compact('query'), true);
+        Log::info($result);
+        return $result;
 
     }
 

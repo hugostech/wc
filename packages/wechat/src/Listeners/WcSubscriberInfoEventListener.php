@@ -8,6 +8,7 @@ use Hugostech\Wechat\Facade\Wechat;
 use Hugostech\Wechat\model\WcSubscriber;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class WcSubscriberInfoEventListener implements ShouldQueue
 {
@@ -29,6 +30,7 @@ class WcSubscriberInfoEventListener implements ShouldQueue
      */
     public function handle(WcSubscriberInfoEvent $event)
     {
+        Log::info($event->openid);
         $subscriber = WcSubscriber::where('openid',$event->openid)->first();
         if (is_null($subscriber)){
             WcSubscriber::create(Wechat::handler('getSubscriberInfo', $event->openid));
