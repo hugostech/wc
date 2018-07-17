@@ -8,6 +8,7 @@ use Hugostech\Wechat\model\WcSubscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use PHPUnit\Framework\Constraint\IsTrue;
 
 class WechatManagementController extends Controller
@@ -46,11 +47,10 @@ class WechatManagementController extends Controller
     }
 
     public function syncSubscriber(Request $request){
-
-        $openids = [];
         $openids = Wechat::handler('getSubscriberList');
         //to do fetch all openid
         if ($request->has('sync_subscriber')){
+            Log::info($openids);
             foreach ($openids as $openid){
                 event(new WcSubscriberInfoEvent($openid));
             }
