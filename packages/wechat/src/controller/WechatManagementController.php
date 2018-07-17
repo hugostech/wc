@@ -49,7 +49,7 @@ class WechatManagementController extends Controller
         if ($request->has('sync_subscriber')){
             $openids = Wechat::handler('getSubscriberList');
         }
-
+        dd($openids);
         //to do sync subscriber openid
     }
 }
