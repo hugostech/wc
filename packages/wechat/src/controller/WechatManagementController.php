@@ -54,7 +54,6 @@ class WechatManagementController extends Controller
             foreach ($openids as $openid){
                 event(new WcSubscriberInfoEvent($openid));
             }
-            event(new WcSubscriberInfoEvent());
         }else{
             $subscribers = WcSubscriber::all()->pluck('openid','id')->all();
 //            foreach ($openids as $openid){
