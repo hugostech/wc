@@ -2,10 +2,13 @@
 
 namespace Hugostech\Wechat\Controller;
 
+use Hugostech\Wechat\Events\WcSubscriberInfoEvent;
 use Hugostech\Wechat\Facade\Wechat;
+use Hugostech\Wechat\model\WcSubscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\IsTrue;
 
 class WechatManagementController extends Controller
 {
@@ -45,11 +48,24 @@ class WechatManagementController extends Controller
     public function syncSubscriber(Request $request){
 
         $openids = [];
+        $openids = Wechat::handler('getSubscriberList');
         //to do fetch all openid
         if ($request->has('sync_subscriber')){
-            $openids = Wechat::handler('getSubscriberList');
+            foreach ($openids as $openid){
+                event(new WcSubscriberInfoEvent($openid));
+            }
+            event(new WcSubscriberInfoEvent());
+        }else{
+            $subscribers = WcSubscriber::all()->pluck('openid','id')->all();
+//            foreach ($openids as $openid){
+//                if (in_array($openid, $subscribers)){
+//
+//                }
+//            }
+            dd($subscribers);
         }
-        dd($openids);
-        //to do sync subscriber openid
+        
+        $subs = WcSubscriber::all();
+        return view('wechat::console.subscribers', compact('subs'));
     }
 }

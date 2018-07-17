@@ -19,7 +19,34 @@
 
 
             </div>
-            <table class="table"></table>
+            @if(isset($subs))
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nickname</th>
+                        <th>Remark</th>
+                        <th>Type</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($subs as $sub)
+                    <tr>
+                        <td>
+                            <img src="{{$sub->headimgurl}}">
+                        </td>
+                        <td>{{$sub->nickname}}</td>
+                        <td>{{$sub->remark}}</td>
+                        <td>{!! Form::select('type',['0'=>'Normal','1'=>'Staff'],$sub->type,['class'=>'form->control']) !!}</td>
+                        <td></td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
+
+
         </div>
     </div>
 @endsection

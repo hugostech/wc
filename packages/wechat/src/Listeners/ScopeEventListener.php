@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners;
+namespace Hugostech\Wechat\Listeners;
 
-use App\Events\ScopeEvent;
+use Hugostech\Wechat\Events\ScopeEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

@@ -2,7 +2,10 @@
 
 namespace Hugostech\Wechat\Listeners;
 
-use App\Events\WcSubscriberInfoEvent;
+
+use Hugostech\Wechat\Events\WcSubscriberInfoEvent;
+use Hugostech\Wechat\Facade\Wechat;
+use Hugostech\Wechat\model\WcSubscriber;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -26,6 +29,9 @@ class WcSubscriberInfoEventListener implements ShouldQueue
      */
     public function handle(WcSubscriberInfoEvent $event)
     {
-        //
+        $subscriber = WcSubscriber::where('openid',$event->openid)->first();
+        if (is_null($subscriber)){
+            WcSubscriber::create(Wechat::handler('getSubscriberInfo', $event->openid));
+        }
     }
 }

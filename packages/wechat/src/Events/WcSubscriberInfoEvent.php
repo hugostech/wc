@@ -13,24 +13,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 class WcSubscriberInfoEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
+    public $override;
+    public $openid;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($openid, $override=false)
     {
-        //
+        $this->openid = $openid;
+        $this->override = $override;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
-    }
 }

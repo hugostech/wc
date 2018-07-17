@@ -45,6 +45,14 @@ class WechatHandler extends Module
         }
     }
 
+    public function getSubscriberInfo($openid){
+        $lang= 'zh_CN';
+        $url = '/cgi-bin/user/info';
+        $query = compact('openid','lang');
+        return $this->makeRequest($url, 'GET', compact('query'), true);
+
+    }
+
 
 
 
