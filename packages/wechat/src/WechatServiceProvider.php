@@ -6,17 +6,17 @@ use Illuminate\Support\ServiceProvider;
 
 class WechatServiceProvider extends ServiceProvider
 {
-    protected $listen = [
-        'Hugostech\Wechat\Events\TemplateMessageEvent' => [
-            'Hugostech\Wechat\Listeners\TemplateMessageListener',
-        ],
-        'Hugostech\Wechat\Events\ScopeEvent' => [
-            'Hugostech\Wechat\Listeners\ScopeEventListener',
-        ],
-        'Hugostech\Wechat\Events\WcSubscriberInfoEvent' => [
-            'Hugostech\Wechat\Listeners\WcSubscriberInfoEventListener',
-        ],
-    ];
+//    protected $listen = [
+//        'Hugostech\Wechat\Events\TemplateMessageEvent' => [
+//            'Hugostech\Wechat\Listeners\TemplateMessageListener',
+//        ],
+//        'Hugostech\Wechat\Events\ScopeEvent' => [
+//            'Hugostech\Wechat\Listeners\ScopeEventListener',
+//        ],
+//        'Hugostech\Wechat\Events\WcSubscriberInfoEvent' => [
+//            'Hugostech\Wechat\Listeners\WcSubscriberInfoEventListener',
+//        ],
+//    ];
     /**
      * Bootstrap services.
      *

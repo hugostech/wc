@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class WcSubscriberInfoEventListener
+class WcSubscriberInfoEventListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -19,7 +19,7 @@ class WcSubscriberInfoEventListener
      */
     public function __construct()
     {
-        //
+        Log::info('listener run');
     }
 
     /**
@@ -30,7 +30,6 @@ class WcSubscriberInfoEventListener
      */
     public function handle(WcSubscriberInfoEvent $event)
     {
-        Log::info($event->openid);
         $subscriber = WcSubscriber::where('openid',$event->openid)->first();
         if (is_null($subscriber)){
             WcSubscriber::create(Wechat::handler('getSubscriberInfo', $event->openid));
