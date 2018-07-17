@@ -6,6 +6,7 @@ use Hugostech\Wechat\Events\TemplateMessageEvent;
 use Hugostech\Wechat\Facade\Wechat;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class TemplateMessageListener implements ShouldQueue
 {

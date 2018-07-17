@@ -50,10 +50,12 @@ class WechatManagementController extends Controller
         $openids = Wechat::handler('getSubscriberList');
         //to do fetch all openid
         if ($request->has('sync_subscriber')){
-            Log::info($openids);
-            foreach ($openids as $openid){
-                event(new WcSubscriberInfoEvent($openid));
-            }
+//            Log::info($openids);
+//            foreach ($openids as $openid){
+//                event(new WcSubscriberInfoEvent($openid));
+//            }
+            $result = Wechat::handler('batchGetSubscribersInfo',$openids);
+            Log::info($result);
         }else{
             $subscribers = WcSubscriber::all()->pluck('openid','id')->all();
 //            foreach ($openids as $openid){

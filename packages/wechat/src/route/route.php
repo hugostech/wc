@@ -11,6 +11,9 @@ Route::prefix(config('wechat.prefix'))->group(function (){
     Route::get('/cb','Hugostech\Wechat\Controller\WechatController@verify');
     Route::get('/accessToken','Hugostech\Wechat\Controller\WechatController@verify');
     Route::get('/jump/{hash}','Hugostech\Wechat\Controller\WechatController@jump')->name('wechat_scope_rediction');
+    Route::get('/test/event',function (){
+        event(new \Hugostech\Wechat\Events\WcSubscriberInfoEvent('testopenid'));
+    });
 
 });
 Route::prefix(config('wechat.prefix').'/console')->name(config('wechat.prefix').'.')->middleware(['web','auth'])->group(function (){

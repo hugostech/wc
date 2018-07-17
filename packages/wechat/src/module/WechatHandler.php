@@ -51,10 +51,20 @@ class WechatHandler extends Module
         $url = '/cgi-bin/user/info';
         $query = compact('openid','lang');
         $result = $this->makeRequest($url, 'GET', compact('query'), true);
-        Log::info($result);
         return $result;
-
     }
+
+    public function batchGetSubscribersInfo($openids){
+        $user_list = array_map(function ($openid) {
+            $lang= 'zh_CN';
+            return compact('openid','lang');
+        }, $openids);
+        $json = compact('user_list');
+        $url = '/cgi-bin/user/info/batchget';
+        $result = $this->makeRequest($url, 'POST', compact('json'), true);
+        return $result;
+    }
+
 
 
 
