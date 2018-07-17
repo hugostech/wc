@@ -38,11 +38,8 @@ class WechatHandler extends Module
         $url = '/cgi-bin/user/get';
         $query = compact('next_openid');
         $result = $this->makeRequest($url, 'GET', compact('query'), true);
-        if ($next_openid!=''){
-            dd($result);
-        }
-        if (empty($result['data']['openid'])){
-            return [];
+        if ($result['count']<10000){
+            return $result['data']['openid'];
         }else{
             return array_merge($result['data']['openid'],$this->getSubscriberList($result['next_openid']));
         }
