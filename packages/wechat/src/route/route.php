@@ -22,6 +22,7 @@ Route::prefix(config('wechat.prefix').'/console')->name(config('wechat.prefix').
     Route::get('/links','Hugostech\Wechat\Controller\WechatManagementController@links')->name('console_links');
     Route::post('/link','Hugostech\Wechat\Controller\WechatManagementController@createLink')->name('console_links_create');
     Route::get('/users','Hugostech\Wechat\Controller\WechatManagementController@subscribers')->name('console_subscribers');
+    Route::get('/datas','Hugostech\Wechat\Controller\WechatManagementController@datas')->name('console_data');
     Route::post('/subscribers/sync','Hugostech\Wechat\Controller\WechatManagementController@syncSubscriber')->name('console_subscribers_sync');
 
 });

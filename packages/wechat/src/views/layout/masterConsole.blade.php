@@ -25,6 +25,9 @@
                 <a href="{{route(config('wechat.prefix').'.console_subscribers')}}" class="list-group-item">
                     Subscribers
                 </a>
+                <a href="{{route(config('wechat.prefix').'.console_data')}}" class="list-group-item">
+                    Data
+                </a>
             </ol>
         </div>
         <div class="col-md-9">

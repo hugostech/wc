@@ -69,4 +69,9 @@ class WechatManagementController extends Controller
         $subs = WcSubscriber::all();
         return view('wechat::console.subscribers', compact('subs'));
     }
+
+    public function datas(){
+        return $accesstoken = Wechat::getAccessToken();
+
+    }
 }
