@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class TemplateMessageListener implements ShouldQueue
+class TemplateMessageListener
 {
     /**
      * Create the event listener.

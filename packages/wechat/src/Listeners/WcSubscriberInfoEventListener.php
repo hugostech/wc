@@ -10,7 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class WcSubscriberInfoEventListener implements ShouldQueue
+class WcSubscriberInfoEventListener
 {
     /**
      * Create the event listener.
