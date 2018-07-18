@@ -60,7 +60,7 @@ class TemplateMessageListener
 }  
 TEMPLETE;
 
-        $json = printf($template,...$event->args);
+        $json = printf($template,'oW3xb1eazDn2EP0MxLLaRsupb_nw','https://mpkf.weixin.qq.com/','test','2018-07-18 12:46:51');
         Log::error($json);
         Log::info(Wechat::message()->sendTemplateMessage($json));
     }
