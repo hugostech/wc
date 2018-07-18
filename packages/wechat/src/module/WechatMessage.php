@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Log;
 
 class WechatMessage extends Module
 {
-    public function sendTemplateMessage($json){
-        $result = $this->makeRequest('/cgi-bin/message/template/send','POST',compact('json'),true);
+    public function sendTemplateMessage($body){
+        $result = $this->makeRequest('/cgi-bin/message/template/send','POST',compact('body'),true);
         if ($result['errcode']==0){
             Cache::put($result['msgid'],$json,10);
         }
