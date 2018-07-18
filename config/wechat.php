@@ -39,6 +39,8 @@ return [
         't1' => 'P8XV__s7izfjopd4sJPMLAB0g-h5nr-X3KPnLHsI8XU', //notify staff
     ],
     'open_url' => 'https://open.weixin.qq.com',
-    'staffs' => [],
+    'staffs' => [
+        'oW3xb1eazDn2EP0MxLLaRsupb_nw',
+    ],
 
 ];
