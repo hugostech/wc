@@ -68,7 +68,7 @@ class WechatHandler extends Module
     }
 
     public function eventHandler($xml){
-        switch ($xml->type){
+        switch ($xml->Event){
             case 'subscribe':
                 $to = $xml->ToUserName;
                 $from = $xml->FromUserName;
