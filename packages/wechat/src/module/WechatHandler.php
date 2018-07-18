@@ -9,6 +9,8 @@
 namespace Hugostech\Wechat\module;
 
 
+use Carbon\Carbon;
+use Hugostech\Wechat\Events\TemplateMessageEvent;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 
@@ -63,6 +65,58 @@ class WechatHandler extends Module
         $url = '/cgi-bin/user/info/batchget';
         $result = $this->makeRequest($url, 'POST', compact('json'), true);
         return $result;
+    }
+
+    public function eventHandler($xml){
+        switch ($xml->type){
+            case 'subscribe':
+                $to = $xml->ToUserName;
+                $from = $xml->FromUserName;
+                $msg = '您好，欢迎关注新西兰职业学院微信公众号！点击屏幕下方的课程名称可以获取更多详细信息，或者给我们留下您的联系方式，我们的客服会尽快给你答复。';
+                return $this->msgGenerator($from, $to, $msg);
+        }
+        return 'success';
+    }
+
+    public function messageHandler($data){
+        //notify staff
+        $this->notifyStaff((string)$data->Content);
+        //return transfer wechat call center
+        return $this->generateTransferCustomerServiceResponse($data->FromUserName, $data->ToUserName);
+
+    }
+
+    private function generateTransferCustomerServiceResponse($toUser,$fromUser){
+        $response = <<<RESPONSE
+        <xml>
+             <ToUserName><![CDATA[$toUser]]></ToUserName>
+             <FromUserName><![CDATA[$fromUser]]></FromUserName>
+             <CreateTime>%s</CreateTime>
+             <MsgType><![CDATA[transfer_customer_service]]></MsgType>
+             
+         </xml>
+RESPONSE;
+        return printf($response,time());
+
+    }
+
+    private function notifyStaff($content){
+        foreach (config('wechat.staffs') as $openid){
+            event(new TemplateMessageEvent('t1',$openid,'https://mpkf.weixin.qq.com/',$content,Carbon::now()));
+        }
+    }
+
+    private function msgGenerator($to,$from,$msg){
+        $msgTemplate = <<<XMLMESSAGE
+                <xml>
+                <ToUserName><![CDATA[%s]]></ToUserName>
+                <FromUserName><![CDATA[%s]]></FromUserName>
+                <CreateTime>%s</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA[%s]]></Content>
+                </xml>
+XMLMESSAGE;
+        return sprintf($msgTemplate,$to,$from,time(),$msg);
     }
 
 

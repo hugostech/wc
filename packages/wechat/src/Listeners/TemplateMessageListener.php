@@ -28,6 +28,10 @@ class TemplateMessageListener implements ShouldQueue
      */
     public function handle(TemplateMessageEvent $event)
     {
-        Wechat::sendTemplateMessage($event->url, $event->json);
+        $template_name = config('wechat.template_messages')[$event->template_id];
+        $template = file_get_contents(storage_path('app/wechat_templates'.$template_name));
+        $json = printf($template,...$event->args);
+        $json = \GuzzleHttp\json_decode($json,true);
+        Log::info(Wechat::sendTemplateMessage($json));
     }
 }

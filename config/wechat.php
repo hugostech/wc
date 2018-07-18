@@ -36,9 +36,9 @@ return [
     ],
     'timeout'=>2,
     'template_messages' => [
-        't1' => 'uMn-d1lws1TsjcnPbxJP1qRhBvHxJxxd_Xri_mQmzSU', //消息模版
+        't1' => 'P8XV__s7izfjopd4sJPMLAB0g-h5nr-X3KPnLHsI8XU', //notify staff
     ],
     'open_url' => 'https://open.weixin.qq.com',
-
+    'staffs' => [],
 
 ];

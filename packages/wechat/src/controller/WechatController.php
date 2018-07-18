@@ -11,7 +11,12 @@ class WechatController extends Controller
 {
     public function entry(Request $request){
         Log::info($request->getContent());
-        return json_encode(['result'=>true]);
+        $xml = simplexml_load_string($request->getContent(),'SimpleXMLElement', LIBXML_NOCDATA);
+        if($xml->MsgType=='event'){
+            return Wechat::handler('eventHandler',$xml);
+        }else{
+            return Wechat::handler('messageHandler',$xml);
+        }
     }
 
     public function verify(Request $request){
