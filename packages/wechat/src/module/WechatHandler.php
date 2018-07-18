@@ -102,7 +102,7 @@ RESPONSE;
 
     private function notifyStaff($content){
         foreach (config('wechat.staffs') as $openid){
-            event(new TemplateMessageEvent('t1',$openid,'https://mpkf.weixin.qq.com/',$content,Carbon::now()));
+            event(new TemplateMessageEvent('t1',$openid,'https://mpkf.weixin.qq.com/',$content,(string)Carbon::now()));
         }
     }
 

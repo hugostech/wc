@@ -33,6 +33,7 @@ class TemplateMessageListener
         Log::info($template);
         Log::info($event->args);
         $json = printf($template,...$event->args);
+        Log::error($json);
         Log::info(Wechat::message()->sendTemplateMessage($json));
     }
 }
