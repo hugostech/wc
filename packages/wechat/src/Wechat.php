@@ -36,11 +36,11 @@ class Wechat
         return $this->handler->getAccessToken();
     }
 
-    public function sendTemplateMessage($tn, $data){
-        $file = file_get_contents(storage_path('app/wechat_templates/'.config('wechat.template_messages')[$tn]));
-        $json = printf($file, ...$data);
-        $this->message->sendTemplateMessage($json);
-    }
+//    public function sendTemplateMessage($tn, $data){
+//        $file = file_get_contents(storage_path('app/wechat_templates/'.config('wechat.template_messages')[$tn]));
+//        $json = printf($file, ...$data);
+//        $this->message->sendTemplateMessage($json);
+//    }
 
     public function handler($method, ...$args){
         return $this->handler->{$method}(...$args);
@@ -49,6 +49,10 @@ class Wechat
 
     public function auth(){
         return $this->auth;
+    }
+
+    public function message(){
+        return $this->message;
     }
 
 

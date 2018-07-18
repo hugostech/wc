@@ -32,6 +32,6 @@ class TemplateMessageListener
         $template = file_get_contents(storage_path('app/wechat_templates/'.$template_name));
         $json = printf($template,...$event->args);
         $json = \GuzzleHttp\json_decode($json,true);
-        Log::info(Wechat::sendTemplateMessage($json));
+        Log::info(Wechat::message()->sendTemplateMessage($json));
     }
 }
