@@ -96,7 +96,7 @@ class WechatHandler extends Module
              
          </xml>
 RESPONSE;
-        return printf($response,time());
+        return sprintf($response,time());
 
     }
 

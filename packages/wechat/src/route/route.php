@@ -12,7 +12,9 @@ Route::prefix(config('wechat.prefix'))->group(function (){
     Route::get('/accessToken','Hugostech\Wechat\Controller\WechatController@verify');
     Route::get('/jump/{hash}','Hugostech\Wechat\Controller\WechatController@jump')->name('wechat_scope_rediction');
     Route::get('/test/event',function (){
-        event(new \Hugostech\Wechat\Events\WcSubscriberInfoEvent('testopenid'));
+        $json = sprin('%s %s %s %s','oW3xb1eazDn2EP0MxLLaRsupb_nw','https://mpkf.weixin.qq.com/','test','2018-07-18 12:46:51');
+
+//        dd($json);
     });
 
 });
