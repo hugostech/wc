@@ -17,7 +17,7 @@ class WechatMessage extends Module
     public function sendTemplateMessage($body){
         $result = $this->makeRequest('/cgi-bin/message/template/send','POST',compact('body'),true);
         if ($result['errcode']==0){
-            Cache::put($result['msgid'],$json,10);
+            Cache::put($result['msgid'],$body,10);
         }
         return $result;
 
