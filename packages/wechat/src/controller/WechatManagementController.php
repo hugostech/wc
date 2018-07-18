@@ -74,4 +74,34 @@ class WechatManagementController extends Controller
         return $accesstoken = Wechat::getAccessToken();
 
     }
+
+    public function activeMenu(){
+        $menu = <<<MENU
+{
+
+	"button": [{
+			"type": "View",
+			"name": "实习计划",
+			"url": "http://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483676&idx=1&sn=f7172485c62e3b651e7d636aaba21fb4&chksm=fd65ca28ca12433e0c380b0634a611923eb36bf080a1a5b1b9f36771d43106629c578accd3ef&scene=18#wechat_redirect",
+			"sub_button": []
+		},
+		{
+			"type": "View",
+			"name": "雅思保分",
+			"url": "http://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483668&idx=1&sn=189d0d49c2896f0832b6da106b0083ec&chksm=fd65ca20ca124336e4c54d9ff66c3196d8a71d60c563ed0b1699b111ca72d72cb9d8924adcea&scene=18#wechat_redirect",
+			"sub_button": []
+		},
+		{
+			"type": "View",
+			"name": "申请课程",
+			"url": "https://w.url.cn/s/AtqfU4u",
+			"sub_button": []
+		}
+
+	]
+
+}
+MENU;
+
+    }
 }
