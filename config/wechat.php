@@ -41,6 +41,7 @@ return [
     'open_url' => 'https://open.weixin.qq.com',
     'staffs' => [
         'oW3xb1eazDn2EP0MxLLaRsupb_nw',
+        'oW3xb1UF0Yk_aarUF9iaWlgkcC4s'
     ],
 
 ];
