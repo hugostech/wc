@@ -75,7 +75,7 @@ class WechatManagementController extends Controller
 
     }
 
-    public function activeMenu(){
+    public function updateMenu(){
         $menu = <<<MENU
 {
 
