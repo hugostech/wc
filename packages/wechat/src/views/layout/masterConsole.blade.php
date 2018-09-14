@@ -28,6 +28,10 @@
                 <a href="{{route(config('wechat.prefix').'.console_data')}}" class="list-group-item">
                     Data
                 </a>
+                <a href="{{route(config('wechat.prefix').'.console_menu_update')}}" class="list-group-item">
+                    Update Menu
+                </a>
+
             </ol>
         </div>
         <div class="col-md-9">

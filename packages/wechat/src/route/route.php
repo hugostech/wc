@@ -24,5 +24,6 @@ Route::prefix(config('wechat.prefix').'/console')->name(config('wechat.prefix').
     Route::get('/users','Hugostech\Wechat\Controller\WechatManagementController@subscribers')->name('console_subscribers');
     Route::get('/datas','Hugostech\Wechat\Controller\WechatManagementController@datas')->name('console_data');
     Route::post('/subscribers/sync','Hugostech\Wechat\Controller\WechatManagementController@syncSubscriber')->name('console_subscribers_sync');
+    Route::get('/menuupdate','Hugostech\Wechat\Controller\WechatManagementController@updateMenu')->name('console_menu_update');
 
 });

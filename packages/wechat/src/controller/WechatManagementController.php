@@ -88,13 +88,13 @@ class WechatManagementController extends Controller
 		{
 			"type": "View",
 			"name": "雅思保分",
-			"url": "http://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483668&idx=1&sn=189d0d49c2896f0832b6da106b0083ec&chksm=fd65ca20ca124336e4c54d9ff66c3196d8a71d60c563ed0b1699b111ca72d72cb9d8924adcea&scene=18#wechat_redirect",
+			"url": "https://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483708&idx=1&sn=aa30eaf31249fe76c91702873ee9bf72&chksm=fd65ca08ca12431e70bb3d3d473631a116c500563404bb4b5d6a6c83378ccf8b8cf651cbaabe#wechat_redirect",
 			"sub_button": []
 		},
 		{
 			"type": "View",
-			"name": "申请课程",
-			"url": "https://w.url.cn/s/AtqfU4u",
+			"name": "我要报名",
+			"url": "https://w.url.cn/s/Az290xD",
 			"sub_button": []
 		}
 
@@ -102,6 +102,6 @@ class WechatManagementController extends Controller
 
 }
 MENU;
-
+        return Wechat::handler('createMenu',$menu);
     }
 }

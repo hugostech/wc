@@ -119,6 +119,14 @@ XMLMESSAGE;
         return sprintf($msgTemplate,$to,$from,time(),$msg);
     }
 
+    public function createMenu($menu){
+        $menu = mb_convert_encoding($menu, 'UTF-8');
+        $url = '/cgi-bin/menu/create';
+        $body = $menu;
+        $result = $this->makeRequest($url,'POST',compact('body'),true);
+        return $result['errmsg'];
+    }
+
 
 
 
