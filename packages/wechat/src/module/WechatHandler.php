@@ -124,6 +124,7 @@ XMLMESSAGE;
         $url = '/cgi-bin/menu/create';
         $body = $menu;
         $result = $this->makeRequest($url,'POST',compact('body'),true);
+        Log::info($result);
         return $result['errmsg'];
     }
 
