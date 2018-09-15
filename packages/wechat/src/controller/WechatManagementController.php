@@ -80,19 +80,19 @@ class WechatManagementController extends Controller
 {
 
 	"button": [{
-			"type": "View",
+			"type": "view",
 			"name": "实习计划",
 			"url": "http://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483676&idx=1&sn=f7172485c62e3b651e7d636aaba21fb4&chksm=fd65ca28ca12433e0c380b0634a611923eb36bf080a1a5b1b9f36771d43106629c578accd3ef&scene=18#wechat_redirect",
 			"sub_button": []
 		},
 		{
-			"type": "View",
+			"type": "view",
 			"name": "雅思保分",
 			"url": "https://mp.weixin.qq.com/s?__biz=MzU3OTU0MjYxOQ==&mid=2247483708&idx=1&sn=aa30eaf31249fe76c91702873ee9bf72&chksm=fd65ca08ca12431e70bb3d3d473631a116c500563404bb4b5d6a6c83378ccf8b8cf651cbaabe#wechat_redirect",
 			"sub_button": []
 		},
 		{
-			"type": "View",
+			"type": "view",
 			"name": "我要报名",
 			"url": "https://w.url.cn/s/Az290xD",
 			"sub_button": []
